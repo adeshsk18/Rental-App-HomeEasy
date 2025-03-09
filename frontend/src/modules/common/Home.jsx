@@ -98,9 +98,9 @@ const Home = () => {
         </div>
         <div className="features-grid">
           <div className="feature-card">
-            <div className="feature-icon">🏠</div>
-            <h3>Verified Properties</h3>
-            <p>All our listings are thoroughly verified for your peace of mind</p>
+            <div className="feature-icon">👤</div>
+            <h3>Verified Owners</h3>
+            <p>All the owners are verified by the app admin</p>
           </div>
           <div className="feature-card">
             <div className="feature-icon">💰</div>

@@ -116,7 +116,7 @@ const AllProperties = () => {
     if (assure) {
       try {
         const response = await axios.delete(
-          `http://localhost:8001/api/owner/deleteproperty/${propertyId}`,
+          `http://localhost:8000/api/owner/deleteproperty/${propertyId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

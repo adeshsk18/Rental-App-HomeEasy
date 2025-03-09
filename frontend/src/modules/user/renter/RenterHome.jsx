@@ -41,43 +41,84 @@ function a11yProps(index) {
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
+
 const RenterHome = () => {
-  const user = useContext(UserContext);
   const [value, setValue] = useState(0);
+  const { userData } = useContext(UserContext);
+  const [filterPropertyType, setPropertyType] = useState("");
+  const [filterPropertyAdType, setPropertyAdType] = useState("");
+  const [filterPropertyAddress, setPropertyAddress] = useState("");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  if (!user) {
-    return null;
-  }
-
   return (
     <div className="dashboard-container">
-      <Container className="mt-4">
-        <h1 className="dashboard-title">Renter Dashboard</h1>
-        <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
+      <Container>
+        <h2 className="dashboard-title">Welcome, {userData?.name}</h2>
+        
+        {/* Advanced Search Section */}
+        <section className="advanced-search">
+          <div className="search-container">
+            <div className="search-filters">
+              <div className="filter-group">
+                <select
+                  className="form-control"
+                  value={filterPropertyType}
+                  onChange={(e) => setPropertyType(e.target.value)}
+                >
+                  <option value="">Property Type</option>
+                  <option value="commercial">commercial</option>
+                  <option value="residential">residential</option>
+                  <option value="land/plot">land/plot</option>
+                </select>
+              </div>
+              
+              <div className="filter-group">
+                <select
+                  className="form-control"
+                  value={filterPropertyAdType}
+                  onChange={(e) => setPropertyAdType(e.target.value)}
+                >
+                  <option value="">Ad Type</option>
+                  <option value="rent">rent</option>
+                  <option value="sale">sale</option>
+                </select>
+              </div>
+              
+              <div className="filter-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search by location..."
+                  value={filterPropertyAddress}
+                  onChange={(e) => setPropertyAddress(e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Box sx={{ width: "100%" }}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <Tabs
               value={value}
               onChange={handleChange}
-              aria-label="renter dashboard tabs"
-              centered
-              sx={{ 
-                '& .MuiTabs-indicator': { 
-                  backgroundColor: '#2563eb',
-                },
-              }}
+              aria-label="basic tabs example"
             >
               <Tab label="All Properties" {...a11yProps(0)} />
-              <Tab label="Booking History" {...a11yProps(1)} />
+              <Tab label="My Properties" {...a11yProps(1)} />
             </Tabs>
           </Box>
           <CustomTabPanel value={value} index={0}>
-            <Container>
-              <AllPropertiesCards loggedIn={user.userLoggedIn} />
-            </Container>
+            <AllPropertiesCards
+              loggedIn={true}
+              searchQuery={filterPropertyAddress}
+              filterPropertyType={filterPropertyType}
+              filterPropertyAdType={filterPropertyAdType}
+              filterPropertyAddress={filterPropertyAddress}
+            />
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}>
             <AllProperty />

@@ -58,13 +58,19 @@ const getAllOwnerPropertiesController = async (req, res) => {
 const deletePropertyController = async (req, res) => {
   const propertyId = req.params.propertyid;
   try {
+    // Delete all bookings related to this property
+    await bookingSchema.deleteMany({
+      propertyId: propertyId
+    });
+
+    // Delete the property
     await propertySchema.findByIdAndDelete({
       _id: propertyId,
     });
 
     return res.status(200).send({
       success: true,
-      message: "The property is deleted",
+      message: "The property and all related bookings have been deleted",
     });
   } catch (error) {
     console.error(error);

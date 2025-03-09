@@ -117,9 +117,9 @@ const AllPropertiesCards = ({ loggedIn, searchQuery, filterPropertyType, filterP
                 alt="Property"
                 className="property-image"
               />
-              {property.isAvailable === "Available" && (
-                <span className="availability-badge">Available</span>
-              )}
+              <span className={`availability-badge ${property.isAvailable === "Available" ? "available" : "unavailable"}`}>
+                {property.isAvailable}
+              </span>
             </div>
             <div className="property-details">
               <h3 className="property-location">{property.propertyAddress}</h3>

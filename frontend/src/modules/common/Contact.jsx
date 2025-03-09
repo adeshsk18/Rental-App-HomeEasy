@@ -18,8 +18,33 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
+    
+    // Create email content with proper formatting
+    const emailContent = `
+Name: ${formData.name}
+Email: ${formData.email}
+
+${formData.message}
+
+Best regards,
+${formData.name}
+    `.trim();
+
+    // Encode the parameters for the mailto link
+    const mailtoLink = `mailto:askodekalmath@outlook.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(emailContent)}`;
+
+    // Try to open default mail client first
+    window.location.href = mailtoLink;
+
+    // Set a timeout to redirect to Gmail if mail client doesn't open
+    setTimeout(() => {
+      // Check if the mailto link was successful (this is a basic check)
+      if (document.hasFocus()) {
+        // If still on the page, redirect to Gmail compose
+        const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=askodekalmath@outlook.com&su=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(emailContent)}`;
+        window.open(gmailLink, '_blank');
+      }
+    }, 500);
   };
 
   return (
@@ -50,7 +75,7 @@ const Contact = () => {
               <div className="contact-icon">✉️</div>
               <div className="contact-text">
                 <h3>Email</h3>
-                <p>contact@houserental.com</p>
+                <p>askodekalmath@outlook.com</p>
               </div>
             </div>
           </div>
