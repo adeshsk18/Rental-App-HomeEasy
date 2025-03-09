@@ -1,82 +1,119 @@
-# Home Rental Web Application
+# House Rental Application
 
-## Team Members
-
-1. **[Neelraj.S]** - **310121104068**
-2. **[Naraayanan.T]** - **310121104067**
-3. **[Sri Arvind]** - **310121104100**
-4. **[Rajesh.D]** - **310121104080**
-5. **[Nandha Kumar.S]** - **310121104066**
-
-## Overview
-
-The Home Rental Web App is a platform developed using the MERN stack (MongoDB, Express.js, React, and Node.js) to help users find, list, and manage rental properties. The application enables property owners to post rental listings and potential renters to search for properties that match their preferences. This web app streamlines the rental process by connecting landlords and renters in one platform, making it easy to find or advertise rental properties.
-
-## Table of Contents
-
-- [Team Members](#team-members)
-- [Overview](#overview)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Setup and Installation](#setup-and-installation)
-- [License](#license)
+A modern web application for property rental and management, connecting property owners with potential renters.
 
 ## Features
 
-- **User Authentication**: Secure login and registration for landlords and renters.
-- **Property Listings**: Landlords can post new listings with details like property type, location, price, and photos.
-- **Property Search**: Renters can search properties based on location, price range, and other filters.
-- **Booking Requests**: Allows renters to submit booking requests directly through the app.
-- **Favorites List**: Renters can save properties they’re interested in.
-- **Responsive Design**: Ensures usability on both desktop and mobile devices.
+### For Visitors
+- Browse available properties
+- View detailed property information
+- Advanced property search with filters (type, ad type, location)
+- Contact form for general inquiries
 
-## Tech Stack
+### For Renters
+- User registration and authentication
+- Property search and filtering
+- Request property bookings
+- Track booking status
+- View booking history
+- Contact property owners
 
-- **Frontend**: React.js
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB
-- **Styling**: CSS
-- **Authentication**: JWT (JSON Web Tokens)
+### For Property Owners
+- Dashboard to manage properties
+- Add new properties with multiple images
+- Edit property details
+- Delete properties (automatically removes related bookings)
+- Manage property bookings
+- Update booking status (pending/booked)
+- Track property availability
 
+### For Administrators
+- User management
+- Property oversight
+- Booking management
+- System monitoring
 
-## Setup and Installation
+## Technical Stack
 
-1. **Clone the repository**
+### Frontend
+- React.js
+- Material-UI (MUI)
+- React Bootstrap
+- Axios for API calls
+- React Router for navigation
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- JWT for authentication
+- Multer for file uploads
+
+## Getting Started
+
+1. Clone the repository
+2. Install dependencies:
    ```bash
-   git clone https://github.com/your-repo/House-Rental.git
-   cd House-Rental
+   # Install frontend dependencies
+   cd frontend
+   npm install
+
+   # Install backend dependencies
+   cd ../backend
+   npm install
    ```
 
-2. **Install dependencies**  
-   Navigate to the backend and frontend directories to install dependencies:
-   ```bash
-   cd backend
-   npm install
-   cd ../frontend
-   npm install
+3. Set up environment variables:
+   Create a `.env` file in the backend directory with:
    ```
-
-3. **Configure Environment Variables**  
-   Set up the required environment variables in a `.env` file in the backend directory:
-   ```plaintext
    PORT=8000
-   MONGO_URI=your_mongodb_uri
+   MONGODB_URL=your_mongodb_connection_string
    JWT_SECRET=your_jwt_secret
    ```
 
-4. **Run the Application**  
-   Start both the backend and frontend servers:
+4. Start the application:
    ```bash
-   # In the backend directory
+   # Start backend server
+   cd backend
    npm start
-   # In the frontend directory
+
+   # Start frontend development server
+   cd frontend
    npm start
    ```
 
-5. **Access the Application**  
-   Visit `http://localhost:3000` to view the app in your browser.
+## API Endpoints
 
+### Authentication
+- POST `/api/user/register` - User registration
+- POST `/api/user/login` - User login
+- POST `/api/user/forgotpassword` - Password reset
+
+### Properties
+- GET `/api/user/getallproperties` - Get all properties
+- POST `/api/owner/postproperty` - Add new property
+- DELETE `/api/owner/deleteproperty/:propertyid` - Delete property
+- PATCH `/api/owner/updateproperty/:propertyid` - Update property
+
+### Bookings
+- POST `/api/user/bookinghandle/:propertyid` - Create booking
+- GET `/api/owner/getallbookings` - Get owner's bookings
+- POST `/api/owner/handlebookingstatus` - Update booking status
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
+
+## Contact
+
+Email: contact@houserental.com
+Phone: +91 8217099506
+Address: Vijayapura, Karnataka, India
